@@ -24,7 +24,7 @@ const defaultLogoProps: LogoProps = {
 const navigationItems: NavigationItem[] = [
   { label: 'About Us', path: '/about' },
   { label: 'Account', path: '/account' },
-  { label: 'Spudnik', path: '/spudnik' },
+  { label: 'Cpu4sales', path: '/sale' },
   { label: 'Limitlesswax', path: '/limitlesswax' },
   { label: 'Login', path: '/login' }
 ];
@@ -37,7 +37,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ boxShadow: 'none', py: 2,}} style={{ backgroundColor: 'inherit' }}>
+    <Box position="static" sx={{ boxShadow: 'none', py: 2,}} style={{ backgroundColor: 'inherit' }}>
       <Toolbar>
         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
           {defaultLogoProps.src ? (
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
           </Box>
         )}
       </Toolbar>
-    </AppBar>
+    </Box>
   );
 };
 

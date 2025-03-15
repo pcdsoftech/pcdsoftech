@@ -50,12 +50,13 @@ const FAQSection: React.FC<FAQSectionProps> = ({ className, sx }) => {
     };
 
   return (
-    <Box sx={{ py: 4, ...sx }} className={className}>
+    <Box sx={{ p: 3, ...sx, maxWidth: '1100px',  display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
       <Typography variant="h5" gutterBottom>
         Frequently Asked Questions
       </Typography>
       {faqItems.map((item) => (
         <Accordion 
+          sx={{ width: '100%', backgroundColor: 'rgba(51,30,34,0.8)', borderRadius: '12px', my: 1, }}
           key={item.id} 
           expanded={expanded === `panel${item.id}`} 
           onChange={handleChange(`panel${item.id}`)}
