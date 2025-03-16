@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { Box, Tabs, Tab, Typography, TextField, Button, Stack } from '@mui/material';
+import * as React from 'react';
+import { Tabs, Tab, Box, Typography, useMediaQuery, Theme } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import TabFirst from './TabFirst';
+import TabSecond from './TabSecond';
+import TabThird from './TabThird';
+import TabFourth from './TabFourth';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -7,8 +12,31 @@ interface TabPanelProps {
   value: number;
 }
 
-function CustomTabPanel(props: TabPanelProps) {
+const AntTabs = styled(Tabs)({
+  borderBottom: '1px solid #e8e8e8',
+  '& .MuiTabs-indicator': {
+    display: 'none',
+  },
+});
+
+const StyledTab = styled(Tab)({
+  color: "white",
+  fontSize: 16,
+  '@media (min-width: 600px)': {
+    fontSize: '24px',
+  },
+  maxWidth: 600,
+  '&.Mui-selected': {
+    backgroundColor: "#391E24",
+    color: 'white',
+    border: 'none',
+  },
+})
+
+
+function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
   return (
     <div
@@ -17,25 +45,25 @@ function CustomTabPanel(props: TabPanelProps) {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
+      style={{ width: '65%' }}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
+        <Box sx={{ p: isMobile? 1 : 3, }}>
+          <Typography>{children}</Typography>
         </Box>
       )}
     </div>
   );
 }
 
-interface VerticalTabsProps {
-    onAmountChanged: (amount: string) => void;
-    amount: string;
-    onRequestStake: () => void;
-    days: string;
-    onDaysChanged: (days: string) => void;
+function a11yProps(index: number) {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
+  };
 }
 
-export default function TabSection({ amount, onAmountChanged, onRequestStake, days, onDaysChanged }: VerticalTabsProps) {
+export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -44,53 +72,33 @@ export default function TabSection({ amount, onAmountChanged, onRequestStake, da
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: '100%', minHeight: '300px' }}
+      sx={{ flexGrow: 1, bgcolor: '#4A1E2A', display: 'flex', height: 400, my: 8 }}
     >
-      <Tabs
+      <AntTabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ bgcolor: '#831F3F', border: 'none', width: '35%' }}
       >
-        <Tab label="Request CPU for Self" />
-        <Tab label="Stake to User" />
-        <Tab label="Deposit and Earn" />
-        <Tab label="Withdraw" />
-      </Tabs>
-      <CustomTabPanel value={value} index={0}>
-        <Stack spacing={2}>
-            <Typography>Amount to send</Typography>
-            <TextField
-                label="WAX"
-                variant="outlined"
-                value={amount}
-                onChange={(e) => onAmountChanged(e.target.value)}
-                sx={{ width: '200px' }} // Adjust width as needed
-            />
-            <Typography>Number of days</Typography>
-            <TextField
-                label="Days"
-                variant="outlined"
-                value={days}
-                onChange={(e) => onDaysChanged(e.target.value)}
-                sx={{ width: '200px' }} // Adjust width as needed
-            />
-            <Typography>Amount to be staked</Typography>
-            <Typography>11.349123158 WAX</Typography>
-            <Button variant="outlined" onClick={onRequestStake}>Request self stake</Button>
-        </Stack>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        Stake to User Content
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        Deposit and Earn Content
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
-        Withdraw Content
-      </CustomTabPanel>
+        <StyledTab label="Request COU for Self" {...a11yProps(0)} />
+        <StyledTab label="Stake to User" {...a11yProps(1)} />
+        <StyledTab label="Deposit and Earn" {...a11yProps(2)} />
+        <StyledTab label="Withdraw" {...a11yProps(3)} />
+      </AntTabs>
+      <TabPanel value={value} index={0}>
+        <TabFirst />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <TabSecond />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <TabThird />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <TabFourth />
+      </TabPanel>
     </Box>
   );
 }

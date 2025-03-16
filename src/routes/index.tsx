@@ -1,5 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom';
-import { Home, AboutUs, Account, Sale } from './elements';
+import { Home, AboutUs, Account, Sale, LimitlessWax, Error } from './elements';
 
 export default function Router() {
   return useRoutes ([
@@ -18,6 +18,14 @@ export default function Router() {
 		{
 			path: 'sale',
 			element: <Sale />
+		},
+		{
+			path: 'limitlesswax',
+			element: <LimitlessWax />
+		},
+		{
+			path: 'error',
+			element: <Error />
 		}
 	])
 }

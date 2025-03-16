@@ -19,7 +19,8 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, description, image }) => 
           width: isMobile ? 48 : 128,
           height: isMobile ? 48 : 128,
           margin: '0 auto 2',
-          transition: 'width 0.3s, height 0.3s'
+          transition: 'width 0.3s, height 0.3s',
+          backgroundColor: "#8C243F"
         }}
       />
       <Typography 

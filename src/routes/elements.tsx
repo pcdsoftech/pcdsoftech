@@ -14,3 +14,5 @@ export const Home = Loadable(lazy(() => import('../pages/Home')));
 export const AboutUs = Loadable(lazy(() => import('../pages/AboutUs')));
 export const Account = Loadable(lazy(() => import('../pages/Account')));
 export const Sale = Loadable(lazy(() => import('../pages/Sale')));
+export const LimitlessWax = Loadable(lazy(() => import('../pages/LimitlessWax')));
+export const Error = Loadable(lazy(() => import('../pages/Error')));

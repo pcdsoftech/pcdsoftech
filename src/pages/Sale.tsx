@@ -15,7 +15,7 @@ const [amount, setAmount] = useState("0");
   return (
     <>
       <InfoSection />
-      <TabSection amount={amount} onAmountChanged={setAmount} onRequestStake={handleRequestStake} days={days} onDaysChanged={setDays}/>
+      <TabSection />
     </>
   );
 }

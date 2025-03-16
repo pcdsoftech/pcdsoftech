@@ -47,18 +47,18 @@ const faqs = [
 ];
 
 const StyledAccordion = styled(Accordion)(() => ({
-	borderRadius: "50px",
+	borderRadius: "24px",
 	"&:first-of-type": {
-		borderTopLeftRadius: "50px",
-		borderTopRightRadius: "50px",
+		borderTopLeftRadius: "24px",
+		borderTopRightRadius: "24px",
 	},
 	"&:last-of-type": {
-		borderBottomLeftRadius: "50px",
-		borderBottomRightRadius: "50px",
+		borderBottomLeftRadius: "24px",
+		borderBottomRightRadius: "24px",
 	},
 }));
 
-const FAQSection: React.FC = () => {
+const App: React.FC = () => {
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const [expanded, setExpanded] = useState<string | false>(false);
 
@@ -123,4 +123,4 @@ const FAQSection: React.FC = () => {
 	);
 };
 
-export default FAQSection;
+export default App;

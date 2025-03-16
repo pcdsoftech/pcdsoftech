@@ -1,7 +1,7 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, useMediaQuery, IconButton, Theme } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, useMediaQuery, IconButton, Theme, Link } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import MobileMenu from './header/MobileMenu';
 interface NavigationItem {
   label: string;
   path: string;
@@ -17,7 +17,7 @@ interface LogoProps {
 const defaultLogoProps: LogoProps = {
   src: './assets/images/logo.png',
   alt: 'Limitless WAX',
-  width: 150,
+  width: 40,
   height: 40
 };
 
@@ -26,7 +26,7 @@ const navigationItems: NavigationItem[] = [
   { label: 'Account', path: '/account' },
   { label: 'Cpu4sales', path: '/sale' },
   { label: 'Limitlesswax', path: '/limitlesswax' },
-  { label: 'Login', path: '/login' }
+  { label: 'Login', path: '/error' }
 ];
 
 const Header: React.FC = () => {
@@ -35,11 +35,16 @@ const Header: React.FC = () => {
   const handleNavigation = (path: string): void => {
     window.location.href = path;
   };
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
 
   return (
     <Box position="static" sx={{ boxShadow: 'none', py: 2,}} style={{ backgroundColor: 'inherit' }}>
       <Toolbar>
-        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+        <Link sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }} href="/">
           {defaultLogoProps.src ? (
             <img
               src={defaultLogoProps.src}
@@ -53,25 +58,27 @@ const Header: React.FC = () => {
               {defaultLogoProps.alt}
             </Typography>
           )}
-        </Box>
+        </Link>
         {isMobile ? (
-          <IconButton edge="start" color="inherit" aria-label="menu">
+          <IconButton edge="start" color="inherit" aria-label="menu" 
+            onClick={toggleDrawer(true)}>
             <MenuIcon />
           </IconButton>
         ) : (
           <Box sx={{ display: 'flex', gap: 2 }}>
-            {navigationItems.map((item: NavigationItem) => (
-              <Button 
-                key={item.path}
-                color="inherit"
-                onClick={() => handleNavigation(item.path)}
-              >
-                {item.label}
-              </Button>
-            ))}
+              {navigationItems.map((item: NavigationItem) => (
+                <Button 
+                  key={item.path}
+                  color="inherit"
+                  onClick={() => handleNavigation(item.path)}
+                >
+                  {item.label}
+                </Button>
+              ))}
           </Box>
         )}
       </Toolbar>
+      <MobileMenu open={open} onClose={toggleDrawer(false)} toggleDrawer={toggleDrawer} />
     </Box>
   );
 };
