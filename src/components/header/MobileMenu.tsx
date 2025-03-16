@@ -6,6 +6,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import Typography from '@mui/material/Typography';
 
 export default function MobileMenu({ open, onClose, toggleDrawer }: { open: boolean, onClose: () => void, toggleDrawer: (newOpen: boolean) => () => void }) {
 
@@ -27,14 +28,15 @@ export default function MobileMenu({ open, onClose, toggleDrawer }: { open: bool
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250, alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.8)', height: '100vh' }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 250, alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.8)', height: '100vh', pt: 3 }} role="presentation" onClick={toggleDrawer(false)}>
+      <Typography sx={{ color: 'white', fontSize: 36, float: 'right', mr: 7, mb: 3 }} onClick={onClose}>X</Typography>
       <List>
         {navigationItems.map((item, index) => (
           <ListItem key={item.path} disablePadding >
             <ListItemButton>
               <ListItemIcon>
               	<Button 
-              	  sx={{ color: 'white'}}
+              	  sx={{ color: 'white', fontSize: 24}}
               	  onClick={() => handleNavigation(item.path)}
               	>
               	  {item.label}
@@ -49,7 +51,7 @@ export default function MobileMenu({ open, onClose, toggleDrawer }: { open: bool
 
   return (
     <div>
-      <Drawer open={open} onClose={toggleDrawer(false)} sx={{ backgroundColor: 'rgba(0,0,0,0.3)'}}>
+      <Drawer open={open} onClose={toggleDrawer(false)} anchor='right' sx={{ backgroundColor: 'rgba(0,0,0,0.3)'}}>
         {DrawerList}
       </Drawer>
     </div>

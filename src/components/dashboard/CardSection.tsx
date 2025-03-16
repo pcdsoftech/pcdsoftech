@@ -3,7 +3,7 @@ import { Box, Grid, useMediaQuery, Theme } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { InfoCard1, InfoCard2 } from './InfoCards';
-import { CardProps } from '../types';
+import { CardProps } from './types';
 import 'swiper/css';
 import 'swiper/css/pagination';
 

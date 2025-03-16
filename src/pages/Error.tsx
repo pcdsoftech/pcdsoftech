@@ -19,7 +19,7 @@ const Error: React.FC = () =>{
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
   return (
-    <Box sx={{ height: '600px', my: 4}}>
+    <Box sx={{ height: isMobile ? '540px' : '700px', my: 4}}>
 			<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
 				<img
 					src={defaultLogoProps.src}

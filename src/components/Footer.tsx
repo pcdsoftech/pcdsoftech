@@ -88,9 +88,11 @@ const Footer = () => {
                 {defaultLogoProps.alt}
               </Typography>
             )}
-            <Typography sx={{ mt: 2}}>
-              If you need help or have any question? please go through our discord.
-            </Typography>
+            {!isSmallScreen && 
+              <Typography sx={{ mt: 2}}>
+                If you need help or have any question? please go through our discord.
+              </Typography>      
+            }
             <Typography variant="body2" sx={{ mt: 2}}>
               © 2025 Limitless Wax. All rights reserved.
             </Typography>

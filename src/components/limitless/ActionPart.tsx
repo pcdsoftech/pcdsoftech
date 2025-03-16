@@ -95,7 +95,7 @@ function ActionPart({ handlePageChange }: { handlePageChange: (newPageNumber: nu
 
       {data.map((item, index) => (
         inputRow(item.id + 1)
-      ))};
+      ))}
 
       <Button variant="contained" sx={{ mt: 2, width: 140, border: '1px dotted white', borderRadius: '0px', bgcolor: 'inherit', color: 'white' }} 
         onClick={() => {

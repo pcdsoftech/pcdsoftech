@@ -62,7 +62,7 @@ const Header: React.FC = () => {
         {isMobile ? (
           <IconButton edge="start" color="inherit" aria-label="menu" 
             onClick={toggleDrawer(true)}>
-            <MenuIcon />
+            <MenuIcon sx={{ fontSize: 36 }} />
           </IconButton>
         ) : (
           <Box sx={{ display: 'flex', gap: 2 }}>
